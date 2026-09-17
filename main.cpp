@@ -7,6 +7,16 @@
 using namespace std;
 
 
+void atenderPacientes(){ //metodo para atender pacientes
+     cout << "1" << endl;
+}
+void verDepartamento(){//metodo para ver los departamentos/servicio
+     cout << "2" << endl;
+}
+void historialAtencion(){// metodo para ver el historial de atencion
+     cout << "3" << endl;
+}
+
 
 int main(){
     ifstream arch("pacientes.txt");
@@ -29,7 +39,35 @@ int main(){
         cout << linea<< endl;
     }
 
-    cout << "compila" << endl;
+    int opcion = 0;
+    while (opcion!= 4)
+    {
+        cout << "=== HOSPITAL MARMAJA ===" << endl;// texto menu
+        cout << "1. Atender pacientes" << endl;
+        cout << "2. Ver departamento" << endl;
+        cout << "3. Revisar historial de atención" << endl;
+        cout << "4. Salir" << endl;
+        cout << "seleccione opcion: ";
+        cin >>opcion;
+        switch (opcion)
+        {
+        case 1:
+            atenderPacientes();
+            break;
+        case 2:
+            verDepartamento();
+            break;
+        case 3:
+            historialAtencion();
+            
+        default:
+            break;
+        }
+
+    }
+    
+    
     
     return 0;
 }
+
