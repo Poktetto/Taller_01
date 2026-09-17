@@ -9,8 +9,13 @@ private:
     int edad;
     string servicio;
 public:
-    Paciente(int ID & edad, string nombre & servicio);
+    Paciente(int ID, string nombre, int edad, string servicio);
     ~Paciente();
-    
+    string getNombre(){
+        return nombre;
+    }
+    string getServicio(){
+        return servicio;
+    }
 
-}
+};
