@@ -1,5 +1,5 @@
 #pragma once
-#include "Paciente.h" //aca se coloca?
+#include "Paciente.h" //aca se coloca? sip 
 # include <string>
 using namespace std; 
 // nodo para crear la lista de pacientes
@@ -11,6 +11,7 @@ public:
     NodoP(Paciente paciente);
     Paciente getPaciente(); //deberia entregar el paciente
     NodoP* getNext();
+    void setNext(NodoP*next);
 
     ~NodoP();
 };

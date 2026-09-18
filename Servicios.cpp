@@ -2,8 +2,9 @@
 
 using namespace std;
 
-Servicios::Servicios(string nombre){
+Servicios::Servicios(string nombre, NodoP* cabezera){
     this->nombre = nombre;
+    this->cabezera = cabezera;
 }
 Servicios::~Servicios(){
 }
