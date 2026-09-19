@@ -25,5 +25,16 @@ public:
     void setNodoP(NodoP* cabezera){
         this->cabezera = cabezera;
     }
+    int getSizeNodoP(){
+        int size =0;
+        NodoP* temp;
+        temp=cabezera;
+        while (temp!=nullptr){
+            size+=1;
+            temp = temp->getNext();
+        }
+        
+        return size;
+    }
     ~Servicios();
 };

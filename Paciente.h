@@ -24,5 +24,6 @@ public:
     int getEdad(){
         return edad;
     }
+    
 
 };
