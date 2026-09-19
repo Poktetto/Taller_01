@@ -1,9 +1,9 @@
 #include <iostream>
 #include <fstream> //para recibir texto
 #include <sstream> //para separar el texto
-//hay que incluir el h y copilar con el cpp... 
-#include "Paciente.h" // para copilar hay que poner las clases "g++ main.cpp Paciente.cpp -o main.exe"
-#include "Servicios.h" //es exponencial, ahora hay que poner este en el copilar
+//hay que incluir el h y compilar con el cpp... 
+#include "Paciente.h" // para compilar hay que poner las clases "g++ main.cpp Paciente.cpp -o main.exe" / "g++ *.cpp -o main, .\main.exe"
+#include "Servicios.h" //es exponencial, ahora hay que poner este en el compilar
 #include "NodoP.h"
 using namespace std;
 
@@ -13,7 +13,7 @@ Servicios* serviciosHead=nullptr; //cabezera de los servicios
 void atenderPacientes(){ //metodo para atender pacientes
     cout << endl;
     int cantidad=0;
-    NodoP* pacienteActual = pacientesHead; //para indicar el paciente actual... lo se algo inecesario la descripcion
+    NodoP* pacienteActual = pacientesHead; //para indicar el paciente actual / el paciente actual es temporal?
     int iteracion =0; //para los numeros de pacientes;
 
     while (pacienteActual!=nullptr){
@@ -27,8 +27,13 @@ void atenderPacientes(){ //metodo para atender pacientes
     cout << "Indique cantidad de pacientes: ";
     cin>>cantidad;
     cout << endl;
-    pacienteActual = pacientesHead; //reset el leer la lista
+    //reset el leer la lista
     for (int i=0; i<cantidad;i++){
+        if (pacientesHead == nullptr) {
+            cout << "No quedan mas pacientes en la lista de espera." << endl;
+            break;
+        }
+        pacienteActual = pacientesHead; // esto tiene que ir aqui  para que no imprima los pacientes ya atentidos
         cout<< "=== ATENDIENDO PACIENTES ==="<<endl;
         cout<< "ID: "<<pacienteActual->getPaciente().getID()<<endl;
         cout<< "Nombre: " <<pacienteActual->getPaciente().getNombre()<<endl;
@@ -36,7 +41,9 @@ void atenderPacientes(){ //metodo para atender pacientes
         cout<< "Servicio: " <<pacienteActual->getPaciente().getServicio()<<endl;
         cout<<endl;
         
-        
+       
+        pacientesHead = pacientesHead->getNext();
+        pacienteActual->setNext(nullptr); 
         //Posicionar paciente actual en el servicio, luego borrar de la lista de pacientes en espera (pacientesHead)
         Servicios* servicioActual = serviciosHead; 
         while (servicioActual!=nullptr){
@@ -47,24 +54,63 @@ void atenderPacientes(){ //metodo para atender pacientes
                 if (servicioActual->getNodoP()==nullptr){
                     servicioActual->setNodoP(pacienteActual);
                 } else {
-                    servicioActual->getNodoP()->setNext(pacienteActual);
-                    //no esta comprobado que funcione
-                }
+                    NodoP* ultimoServicio = servicioActual->getNodoP();
+                    while (ultimoServicio->getNext() != nullptr) {
+                        ultimoServicio = ultimoServicio->getNext();
+                    }
+                    ultimoServicio->setNext(pacienteActual);
 
-                //borrar de pacienteHead
+                } break; //permite "eliminarlo" de la lista sin tener que borrarlo de la memoria para utilizar en los servicios
+                
+           
+              
             }
             servicioActual = servicioActual->getNext();
         }
-        pacienteActual = pacienteActual->getNext();
+  
         cout<<endl;
     }
      
 }
 void verDepartamento(){//metodo para ver los departamentos/servicio
-     cout << "2" << endl;
+    int opcion = 0;
+     cout << "=== DEPARTAMENTOS/SERVICIOS ===" << endl;// texto menu
+        cout << "1. Urgencias" << endl;
+        cout << "2. Medicina General" << endl;
+        cout << "3. Cardiología" << endl;
+        cout << "4. Neurología" << endl;
+        cout << "5. Traumatología" << endl;
+        cout << "6. Cirugía" << endl;
+        cout << "7. Pediatría" << endl;
+        cout << "8. Hospitalización" << endl;
+        cout << "seleccione opcion: ";
+        cin >>opcion;
+
+        switch (opcion){ //no creo que este bien 
+        case 1:
+            
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+        case 7:
+            break;
+        case 8:
+            break;
+        
+        default:
+            break;
+        }
 }
 void historialAtencion(){// metodo para ver el historial de atencion
-     cout << "3" << endl;
+     cout << "=== HISTORIAL DE ÚLTIMAS ATENCIONES DEL HOSPITAL ===" << endl;
 }
 
 
@@ -138,7 +184,7 @@ int main(){
     servicioPed->setNext(servicioHospital); 
 
     //siento que debe haber una mejor manera... 
-    
+    //esto crea una lista de nodos de servicio?
 
 
     //menu

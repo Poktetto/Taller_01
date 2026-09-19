@@ -1,5 +1,5 @@
 #pragma once
-#include "Paciente.h" //aca se coloca? sip 
+#include "Paciente.h" 
 # include <string>
 using namespace std; 
 // nodo para crear la lista de pacientes
