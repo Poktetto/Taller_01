@@ -12,6 +12,9 @@ NodoP* NodoP::getNext(){return this ->next;}
 void NodoP::setNext(NodoP* next){
     this->next =next;
 }
+void NodoP::setPaciente(Paciente paciente){
+    this-> paciente =paciente;
+}
 
 
 NodoP::~NodoP(){}

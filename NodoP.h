@@ -12,6 +12,7 @@ public:
     Paciente getPaciente(); //deberia entregar el paciente
     NodoP* getNext();
     void setNext(NodoP*next);
+    void setPaciente(Paciente paciente);
 
     ~NodoP();
 };
