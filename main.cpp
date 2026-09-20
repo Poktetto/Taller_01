@@ -1,4 +1,5 @@
 #include <iostream>
+#include <clocale> //para los tildes
 #include <fstream> //para recibir texto
 #include <sstream> //para separar el texto
 //hay que incluir el h y compilar con el cpp... 
@@ -10,6 +11,29 @@ using namespace std;
 NodoP* pacientesHead=nullptr; //Cabezera de los pacientes a atender
 Servicios* serviciosHead=nullptr; //cabezera de los servicios
 NodoP* historialHead=nullptr;//  cabecera del historial
+
+
+
+void limpiarLista(NodoP* nodoAct){
+    NodoP* nodoTemp = nodoAct;
+    while (nodoTemp!=nullptr){
+        NodoP* nodoTemp2 = nodoTemp;
+        nodoTemp = nodoTemp->getNext();
+        delete nodoTemp2;
+    }
+    nodoAct = nullptr;
+    
+}
+void limpiarServicio(Servicios* serviciosAct){
+    Servicios* servicioTemp = serviciosAct;
+     while (servicioTemp!=nullptr){
+        Servicios* serviciosTemp2 = servicioTemp;
+        servicioTemp = servicioTemp->getNext();
+        delete serviciosTemp2;
+    }
+    serviciosAct = nullptr;
+}
+
 
 void atenderPacientes(){ //metodo para atender pacientes
     cout << endl;
@@ -242,6 +266,11 @@ void historialAtencion(){// metodo para ver el historial de atencion
 
 int main(){
 
+    //para tildes
+    setlocale(LC_ALL, "es_ES.UTF-8");
+
+
+
     ifstream arch("pacientes.txt");
     string linea;
 
@@ -262,7 +291,7 @@ int main(){
         
 
         Paciente cliente(ID,nombre,intEdad,servicio); //crea el paciente (Sinceramente desconozco porque lo llame cliente)
-        cout << cliente.getNombre() << endl;
+        //cout << cliente.getNombre() << endl; //print para revisar si se crea la lista
 
         NodoP* pacienteNew = new NodoP(cliente);
 
@@ -338,6 +367,9 @@ int main(){
             break;
 
         case 4:
+            limpiarLista(pacientesHead);
+            limpiarLista(historialHead);
+            limpiarServicio(serviciosHead);
             break;
             
             
